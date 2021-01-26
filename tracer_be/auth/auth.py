@@ -1,10 +1,8 @@
 from flask import Blueprint, redirect, request
 from flask_login import current_user, login_user
 
-from . import login_manager
-# from .forms import LoginForm, SignupForm
-from .models import User, db
-
+from tracer_be import login_manager
+from ..models import User, db
 
 # Blueprint config
 auth_bp = Blueprint(
@@ -19,30 +17,28 @@ def register():
         email = request.form['email']
         password = request.form['password']
 
-        # form = SignupForm()
-
         existing_user = User.query.filter_by(email=email).first()
 
         if existing_user is None:
-        user = User(
-            first_name = first_name,
-            last_name = last_name,
-            email = email
-        )
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
+            user = User(
+                first_name = first_name,
+                last_name = last_name,
+                email = email
+            )
+            user.set_password(password)
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
 
-        return {'status': 'Logged in'}
+            return {'status': 'new', 'user': user.serialize()}
+        else:
+            return {'status': 'existing'}
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return {'status': 'Logged In'}
-
-    # form = LoginForm()
 
     user = User.query.filter_by(email=email).first()
 

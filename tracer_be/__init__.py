@@ -2,7 +2,7 @@ from flask import Flask
 from config import Config
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-# from flask_migrate import Migrate
+from flask_cors import CORS
 
 # ---------------------------------
 # source venv/bin/activate
@@ -16,7 +16,7 @@ login_manager = LoginManager()
 # create app
 def create_app():
     app = Flask(__name__)
-    # app.config.from_object(Config)
+    CORS(app)
     app.config.from_object('config.Config')
 
     db.init_app(app)

@@ -3,6 +3,7 @@ from config import Config
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+import os
 
 # ---------------------------------
 # source venv/bin/activate
@@ -16,6 +17,7 @@ login_manager = LoginManager()
 # create app
 def create_app():
     app = Flask(__name__)
+    app.secret_key = os.urandom(24)
     CORS(app)
     app.config.from_object('config.Config')
 
@@ -34,5 +36,5 @@ def create_app():
         return app
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(Debug=True)

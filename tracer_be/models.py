@@ -11,6 +11,9 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(50))
     password = db.Column(db.String(128))
 
+    def is_authenticated(self):
+        return self.is_authenticated
+
     def set_password(self, password):
         self.password = generate_password_hash(password, method='sha256')
 

@@ -12,7 +12,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(128))
 
     def is_authenticated(self):
-        return self.is_authenticated
+        return True
+        # return self.is_authenticated
 
     def set_password(self, password):
         self.password = generate_password_hash(password, method='sha256')

@@ -27,8 +27,8 @@ def create_app():
     with app.app_context():
         from .auth import auth
         app.register_blueprint(auth.auth_bp)
-        # from .retrieve import retrieve
-        # app.register_blueprint(retrieve.retrieve_bp)
+        from .retrieve import retrieve
+        app.register_blueprint(retrieve.retrieve_bp)
 
         # from . import routes
         db.create_all()

@@ -52,16 +52,16 @@ def login():
     #
     #     return {'status': 'DEAD'}
 
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+    # if request.method == 'POST':
+    email = request.form['email']
+    password = request.form['password']
 
-        user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
 
-        if user and user.check_password(password=password):
-            user.is_authenticated = True    #-----------------------------
-            login_user(user)
-            return {'user': user.serialize()}
+    if user and user.check_password(password=password):
+        # current_user.is_authenticated = True    #-----------------------------
+        login_user(user)
+        return {'user': user.serialize()}
 
 
 
@@ -70,6 +70,8 @@ def login():
 def check_login():
     if current_user.is_authenticated:
         return {'status': 'LOGGED IN'}
+
+    print(current_user)
 
 
 @login_manager.user_loader

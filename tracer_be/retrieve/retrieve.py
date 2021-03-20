@@ -14,16 +14,24 @@ api_key = Config.API_KEY
 # STOCKS
 @retrieve_bp.route('/stocks_us', methods=['GET'])
 def list_stocks():
-    exchange = 'US' # *** placeholder ***
-    return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=' + exchange + '&token=' + api_key).content
+    return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
 
 
 @retrieve_bp.route('/current_price', methods=['GET','POST'])
 def get_price():
     if request.method == 'POST':
-        stock = request.get_json()
-        ticker = stock['symbol']
+        req_obj = request.get_json()
+        ticker = req_obj['symbol']
+
         return requests.get('https://finnhub.io/api/v1/quote?symbol=' + ticker + '&token=' + api_key).content
+
+@retrieve_bp.route('/stock_info', methods=['GET','POST'])
+def get_info():
+    if request.method == 'POST':
+        req_obj = request.get_json()
+        ticker = req_obj['symbol']
+
+        return requests.get('https://finnhub.io/api/v1/stock/profile2?symbol=' + ticker + '&token=' + api_key).content
 # ------------------------------------------------------------------------------
 
 # CRYPTO

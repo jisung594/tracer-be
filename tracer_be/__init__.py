@@ -7,6 +7,7 @@ import os
 
 # ---------------------------------
 # source venv/bin/activate
+# cd tracer-be (from first-level app directory)
 # export FLASK_APP=__init__.py && export FLASK_ENV=development
 # flask run
 # ---------------------------------

@@ -8,7 +8,6 @@ auth_bp = Blueprint(
     'auth_bp', __name__
 )
 
-
 # @auth_bp.route('/')
 # def index():
 #     if 'username' in session:
@@ -18,6 +17,7 @@ auth_bp = Blueprint(
 
 
 @auth_bp.route('/register', methods=['GET','POST'])
+# @auth_bp.route('https://tracerscfx-be.herokuapp.com/api/register', methods=['GET','POST'])
 def register():
     if request.method == 'POST':
         first_name = request.form['first_name']
@@ -44,6 +44,7 @@ def register():
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
+# @auth_bp.route('https://tracerscfx-server.herokuapp.com/api/login', methods=['GET', 'POST'])
 def login():
     # if request.method == 'GET':
     #     # if current_user.is_authenticated:
@@ -66,6 +67,7 @@ def login():
 
 
 @auth_bp.route('/check_login', methods=['GET'])
+# @auth_bp.route('https://tracerscfx-server.herokuapp.com/api/check_login', methods=['GET'])
 # @login_required    #------------------------------------
 def check_login():
     if current_user.is_authenticated:

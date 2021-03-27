@@ -7,7 +7,6 @@ retrieve_bp = Blueprint(
     'retrieve_bp', __name__
 )
 
-
 api_key = Config.API_KEY
 
 

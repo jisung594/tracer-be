@@ -20,7 +20,7 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = os.urandom(24)
     # CORS(app)
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    cors = CORS(app, resources={r"/*": {"origins": "*"}})
     app.config.from_object('config.Config')
 
     db.init_app(app)

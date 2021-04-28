@@ -19,7 +19,8 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__)
     app.secret_key = os.urandom(24)
-    CORS(app)
+    # CORS(app)
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     app.config.from_object('config.Config')
 
     db.init_app(app)

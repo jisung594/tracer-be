@@ -27,7 +27,7 @@ def create_app():
     # cors = CORS(app)
     # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
     CORS(app, resources={
-        r'https://tracerscfx-server.herokuapp.com/*': {
+        r'/*': {
             'origins': '*',
             'supports_credentials': True
         }

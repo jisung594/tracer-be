@@ -24,7 +24,7 @@ def create_app():
     # cors = CORS(app)
     # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
     cors = CORS(app, resources={
-        r'/*': {
+        r'/.*': {
             'origins': '*'
         }
     })

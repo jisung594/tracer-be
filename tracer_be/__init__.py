@@ -23,12 +23,15 @@ def create_app():
     # ----------------
     # cors = CORS(app)
     # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
-    cors = CORS(app, resources={
-        r'/.*': {
-            'origins': '*'
-        }
-    })
-    app.config['CORS_HEADERS'] = 'Content-Type'
+    # cors = CORS(app, resources={
+    #     r'/.*': {
+    #         'origins': '*'
+    #     }
+    # })
+    # app.config['CORS_HEADERS'] = 'Content-Type'
+
+    cors = CORS()
+    cors.init_app(app, resources={r"/*": {"origins": self.cors_origins, "supports_credentials": True}})
     # ----------------
     app.config.from_object('config.Config')
 
@@ -46,7 +49,6 @@ def create_app():
 
         return app
 
-    cors.init_app(app)
     # @app.after_request
     # def after_request(response):
     #   response.headers.add('Access-Control-Allow-Origin', '*')

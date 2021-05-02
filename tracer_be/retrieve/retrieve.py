@@ -24,7 +24,7 @@ def list_stocks():
     res.headers['Content-Type'] = 'application/json'
     h = res.headers
     # prepare headers for CORS authentication
-    h['Access-Control-Allow-Origin'] = origin
+    h['Access-Control-Allow-Origin'] = flask.request.environ['HTTP_ORIGIN']
     h['Access-Control-Allow-Methods'] = 'GET'
     h['Access-Control-Allow-Headers'] = 'X-Requested-With'
 

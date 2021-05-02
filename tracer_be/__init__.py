@@ -23,9 +23,9 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = os.urandom(24)
     app.config.from_object('config.Config')
-    # app.config['CORS_HEADERS'] = 'Content-Type'               #------
+    # app.config['CORS_HEADERS'] = 'Content-Type'
     # app.config['CORS_ALLOW_HEADERS'] = ['Content-Type', 'Authorization']
-    # app.config['CORS_RESOURCES'] = {r"*": {"origins": "*"}}  #------
+    # app.config['CORS_RESOURCES'] = {r"*": {"origins": "*"}}
     # CORS(app)
     # ----------------
     # cors = CORS(app)

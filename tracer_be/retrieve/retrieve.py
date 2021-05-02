@@ -1,8 +1,8 @@
 from flask import Blueprint, request, make_response
 import requests
 from config import Config
+from flask_cors import CORS, cross_origin
 
-from flask_cors import CORS, cross_origin #--------------------
 
 # Blueprint config
 retrieve_bp = Blueprint(
@@ -11,8 +11,8 @@ retrieve_bp = Blueprint(
 
 api_key = Config.API_KEY
 
-CORS(retrieve_bp, resources={r"/*": {"origins": "http://localhost:3000"}},  supports_credentials=True) #-----------------------
-# CORS(retrieve_bp) #------------------------
+CORS(retrieve_bp, resources={r"/*": {"origins": "http://localhost:3000"}},  supports_credentials=True)
+# CORS(retrieve_bp)
 
 
 # STOCKS
@@ -20,8 +20,6 @@ CORS(retrieve_bp, resources={r"/*": {"origins": "http://localhost:3000"}},  supp
 @cross_origin(origins=['http://localhost:3000', 'https://tracerscfx.herokuapp.com'])
 def list_stocks():
     return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
-
-    # requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
 
     # res = make_response(requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content)
     # res.headers.add('Content-Type', 'application/json')

@@ -21,7 +21,7 @@ def create_app():
     app.secret_key = os.urandom(24)
     app.config.from_object('config.Config')
     app.config['CORS_HEADERS'] = 'Content-Type'               #------
-    app.config['CORS_RESOURCES'] = {r"/*": {"origins": "*"}}  #------
+    app.config['CORS_RESOURCES'] = {r"*": {"origins": "*"}}  #------
     # CORS(app)
     # ----------------
     # cors = CORS(app)

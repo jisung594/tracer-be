@@ -28,7 +28,7 @@ def list_stocks():
     # h['Access-Control-Allow-Methods'] = 'GET'
     # h['Access-Control-Allow-Headers'] = 'X-Requested-With'
     # res.headers = h
-
+    res.headers.add('Access-Control-Allow-Origin', '*')
     return res
 
 @retrieve_bp.after_request

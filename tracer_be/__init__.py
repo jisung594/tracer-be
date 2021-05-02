@@ -28,14 +28,14 @@ def create_app():
     # app.config['CORS_RESOURCES'] = {r"*": {"origins": "*"}}  #------
     # CORS(app)
     # ----------------
-    cors = CORS(app)
-    cors.init_app(app, resources={r"/*": {"origins": "*", "supports_credentials": True}})
-    # CORS(app, resources={
-    #     r'/*': {
-    #         'origins': '*',
-    #         'supports_credentials': True
-    #     }
-    # })
+    # cors = CORS(app)
+    # cors.init_app(app, resources={r"/*": {"origins": "*", "supports_credentials": True}})
+    CORS(app, resources={
+        r'/*': {
+            'origins': '*',
+            'supports_credentials': True
+        }
+    })
     # ----------------
 
 

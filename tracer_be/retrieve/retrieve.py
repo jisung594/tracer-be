@@ -21,13 +21,14 @@ CORS(retrieve_bp) #------------------------
 def list_stocks():
     # return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
     res = requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
+    
     res.headers['Content-Type'] = 'application/json'
     h = res.headers
     h['Access-Control-Allow-Origin'] = flask.request.environ['HTTP_ORIGIN']
     h['Access-Control-Allow-Methods'] = 'GET'
     h['Access-Control-Allow-Headers'] = 'X-Requested-With'
-    #
-    # res.headers = h
+    res.headers = h
+
     return res
 
 @retrieve_bp.after_request

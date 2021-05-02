@@ -2,7 +2,7 @@ from flask import Blueprint, request
 import requests
 from config import Config
 
-from flask_cors import CORS, cross_origin #--------------------
+# from flask_cors import CORS, cross_origin #--------------------
 
 # Blueprint config
 retrieve_bp = Blueprint(
@@ -11,7 +11,7 @@ retrieve_bp = Blueprint(
 
 api_key = Config.API_KEY
 
-CORS(retrieve_bp, resources={r"/*": {"origins": "*"}},  supports_credentials=True) #-----------------------
+# CORS(retrieve_bp, resources={r"/*": {"origins": "*"}},  supports_credentials=True) #-----------------------
 # CORS(retrieve_bp) #------------------------
 
 

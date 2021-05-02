@@ -19,11 +19,11 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__)
     app.secret_key = os.urandom(24)
-    CORS(app)
+    # CORS(app)
     # ----------------
     # cors = CORS(app)
     # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
-    # cors = CORS(app, resources={r'/*': {"origins": 'https://tracerscfx.herokuapp.com'}})
+    CORS(app, resources={r'/*': {"origins": "*", "supports_credentials": True}})
     # ----------------
     app.config.from_object('config.Config')
 

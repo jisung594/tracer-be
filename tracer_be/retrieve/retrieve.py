@@ -24,11 +24,11 @@ def list_stocks():
     # requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
 
     res = make_response(requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content)
-    res.headers['Content-Type'] = 'application/json'
-    res.headers['Access-Control-Allow-Origin'] = '*'
-    res.headers['Access-Control-Allow-Headers'] = '*'
-    res.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
-    res.headers['Access-Control-Allow-Credentials'] = 'true'
+    res.headers.add('Content-Type', 'application/json')
+    res.headers.add('Access-Control-Allow-Origin', '*')
+    res.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+    res.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    res.headers.add('Access-Control-Allow-Credentials', 'true')
     return res
 
 # @retrieve_bp.after_request

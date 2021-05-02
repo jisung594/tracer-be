@@ -28,9 +28,6 @@ def list_stocks():
     # h['Access-Control-Allow-Headers'] = 'X-Requested-With'
     #
     # res.headers = h
-    # return res
-
-    res.headers.add('Access-Control-Allow-Origin', '*')
     return res
 
 

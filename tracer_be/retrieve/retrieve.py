@@ -21,17 +21,17 @@ api_key = Config.API_KEY
 def list_stocks():
     # return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
     res = requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
-    res.headers['Content-Type'] = 'application/json'
-    h = res.headers
-    # prepare headers for CORS authentication
-    h['Access-Control-Allow-Origin'] = flask.request.environ['HTTP_ORIGIN']
-    h['Access-Control-Allow-Methods'] = 'GET'
-    h['Access-Control-Allow-Headers'] = 'X-Requested-With'
+    # res.headers['Content-Type'] = 'application/json'
+    # h = res.headers
+    # h['Access-Control-Allow-Origin'] = flask.request.environ['HTTP_ORIGIN']
+    # h['Access-Control-Allow-Methods'] = 'GET'
+    # h['Access-Control-Allow-Headers'] = 'X-Requested-With'
+    #
+    # res.headers = h
+    # return res
 
-    res.headers = h
+    res.headers.add('Access-Control-Allow-Origin', '*')
     return res
-
-    # res.headers.add('Access-Control-Allow-Origin', '*')
 
 
 @retrieve_bp.route('/current_price', methods=['GET','POST'])

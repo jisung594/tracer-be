@@ -6,17 +6,18 @@ from flask_cors import CORS, cross_origin #--------------------
 
 # Blueprint config
 retrieve_bp = Blueprint(
-    'retrieve_bp', __name__, url_prefix='/retrieve'
+    'retrieve_bp', __name__
 )
 
 api_key = Config.API_KEY
 
 CORS(retrieve_bp, resources={r"/*": {"origins": "*"}},  supports_credentials=True) #-----------------------
+# CORS(retrieve_bp) #------------------------
 
 
 # STOCKS
 @retrieve_bp.route('/stocks_us', methods=['GET'])
-@cross_origin()
+# @cross_origin()
 def list_stocks():
     return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
 

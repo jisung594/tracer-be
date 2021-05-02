@@ -12,12 +12,12 @@ retrieve_bp = Blueprint(
 api_key = Config.API_KEY
 
 # CORS(retrieve_bp, resources={r"/*": {"origins": "http://localhost:3000"}},  supports_credentials=True) #-----------------------
-CORS(retrieve_bp) #------------------------
+# CORS(retrieve_bp) #------------------------
 
 
 # STOCKS
 @retrieve_bp.route('/stocks_us', methods=['GET'])
-@cross_origin(origins=['http://localhost:3000', 'https://tracerscfx.herokuapp.com'])
+# @cross_origin(origins=['http://localhost:3000', 'https://tracerscfx.herokuapp.com'])
 def list_stocks():
     # return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
 
@@ -26,7 +26,7 @@ def list_stocks():
     res = make_response(requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content)
     res.headers['Content-Type'] = 'application/json'
     res.headers['Access-Control-Allow-Origin'] = '*'
-    res.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    res.headers['Access-Control-Allow-Headers'] = '*'
     res.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
     res.headers['Access-Control-Allow-Credentials'] = 'true'
     return res

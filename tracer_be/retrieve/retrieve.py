@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response
 import requests
 from config import Config
 
@@ -17,23 +17,27 @@ CORS(retrieve_bp) #------------------------
 
 # STOCKS
 @retrieve_bp.route('/stocks_us', methods=['GET'])
-@cross_origin(origins=['http://127.0.0.1:3000'])
+@cross_origin(origins=['http://localhost:3000', 'https://tracerscfx.herokuapp.com'])
 def list_stocks():
     # return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
-    res = requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
-    res.headers.add('Content-Type', 'application/json')
-    res.headers.add('Access-Control-Allow-Origin', '*')
-    res.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-    res.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    res.headers.add('Access-Control-Allow-Credentials', 'true')
+
+    # requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
+
+    res = make_response(requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content)
+    res.headers['Content-Type'] = 'application/json'
+    res.headers['Access-Control-Allow-Origin'] = '*'
+    res.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    res.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
+    res.headers['Access-Control-Allow-Credentials'] = 'true'
     return res
 
 # @retrieve_bp.after_request
 # def after_request(response):
-#     response.headers.add('Access-Control-Allow-Origin', '*')
-#     response.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-#     response.headers.add('Access-Control-Allow-Credentials', 'true')
+    # res.headers.add('Content-Type', 'application/json')
+    # res.headers.add('Access-Control-Allow-Origin', '*')
+    # res.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+    # res.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    # res.headers.add('Access-Control-Allow-Credentials', 'true')
 #     return response
 
 

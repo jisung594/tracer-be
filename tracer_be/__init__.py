@@ -23,7 +23,7 @@ def create_app():
     # ----------------
     # cors = CORS(app)
     # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
-    CORS(app, resources={r'/*': {'origins': 'http://localhost:3000', 'supports_credentials': True}})
+    CORS(app, resources={r'/*': {'origins': '*', 'supports_credentials': True}})
     app.config['CORS_HEADERS'] = 'Content-Type'
     # ----------------
     app.config.from_object('config.Config')

@@ -12,7 +12,7 @@ retrieve_bp = Blueprint(
 api_key = Config.API_KEY
 
 # CORS(retrieve_bp, resources={r"/*": {"origins": "http://localhost:3000"}},  supports_credentials=True) #-----------------------
-# CORS(retrieve_bp) #------------------------
+CORS(retrieve_bp) #------------------------
 
 
 # STOCKS

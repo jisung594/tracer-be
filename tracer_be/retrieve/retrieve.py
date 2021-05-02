@@ -1,4 +1,4 @@
-from flask import Blueprint, request, after_this_request
+from flask import Blueprint, request
 import requests
 from config import Config
 
@@ -28,10 +28,10 @@ def list_stocks():
     # h['Access-Control-Allow-Methods'] = 'GET'
     # h['Access-Control-Allow-Headers'] = 'X-Requested-With'
     # res.headers = h
-    res.headers.add('Access-Control-Allow-Origin', '*')
+    # res.headers.add('Access-Control-Allow-Origin', '*')
     return res
 
-@retrieve_bp.after_this_request
+@retrieve_bp.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')
   response.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')

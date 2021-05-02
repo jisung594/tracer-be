@@ -11,17 +11,17 @@ retrieve_bp = Blueprint(
 
 api_key = Config.API_KEY
 
-CORS(retrieve_bp, resources={r"/*": {"origins": "*"}},  supports_credentials=True) #-----------------------
+CORS(retrieve_bp, resources={r"/*": {"origins": "http://localhost:3000"}},  supports_credentials=True) #-----------------------
 # CORS(retrieve_bp) #------------------------
 
 
 # STOCKS
 @retrieve_bp.route('/stocks_us', methods=['GET'])
-@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+@cross_origin(origin='localhost', headers=['Content-Type','Authorization'])
 def list_stocks():
-    # return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
-    res = requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
-    return res.headers.add('Access-Control-Allow-Origin', '*')
+    return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
+    # res = requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
+    # return res.headers.add('Access-Control-Allow-Origin', '*')
 
 
 @retrieve_bp.route('/current_price', methods=['GET','POST'])

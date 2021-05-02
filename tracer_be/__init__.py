@@ -19,18 +19,21 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__)
     app.secret_key = os.urandom(24)
-    CORS(app)
+    app.config.from_object('config.Config')
+    app.config['CORS_HEADERS'] = 'Content-Type'               #------
+    app.config['CORS_RESOURCES'] = {r"/*": {"origins": "*"}}  #------
+    # CORS(app)
     # ----------------
     # cors = CORS(app)
     # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
     CORS(app, resources={
         r'/*': {
-            'origins': '*'
+            'origins': '*',
+            'supports_credentials': True
         }
     })
-    # app.config['CORS_HEADERS'] = 'Content-Type'
     # ----------------
-    app.config.from_object('config.Config')
+
 
     db.init_app(app)
     login_manager.init_app(app)
@@ -46,12 +49,6 @@ def create_app():
 
         return app
 
-    @app.after_request
-    def after_request(response):
-      response.headers.add('Access-Control-Allow-Origin', '*')
-      response.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-      response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-      return response
 
 
 if __name__ == '__main__':

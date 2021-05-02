@@ -30,6 +30,15 @@ def list_stocks():
     # res.headers = h
     return res
 
+@retrieve_bp.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
+
+  
+
 
 @retrieve_bp.route('/current_price', methods=['GET','POST'])
 def get_price():

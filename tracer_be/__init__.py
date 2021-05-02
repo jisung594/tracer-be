@@ -15,6 +15,9 @@ import os
 db = SQLAlchemy()
 login_manager = LoginManager()
 
+cors = CORS()
+
+
 # create app
 def create_app():
     app = Flask(__name__)
@@ -26,13 +29,13 @@ def create_app():
     # CORS(app)
     # ----------------
     # cors = CORS(app)
-    # cors.init_app(api, resources={r"/api/*": {"origins": "*", "supports_credentials": True}})
-    CORS(app, resources={
-        r'/*': {
-            'origins': '*',
-            'supports_credentials': True
-        }
-    })
+    cors.init_app(app, resources={r"*": {"origins": "*", "supports_credentials": True}})
+    # CORS(app, resources={
+    #     r'/*': {
+    #         'origins': '*',
+    #         'supports_credentials': True
+    #     }
+    # })
     # ----------------
 
 

@@ -2,11 +2,11 @@ from flask import Blueprint, request
 import requests
 from config import Config
 
-# from flask_cors import CORS, cross_origin #--------------------
+from flask_cors import CORS, cross_origin #--------------------
 
 # Blueprint config
 retrieve_bp = Blueprint(
-    'retrieve_bp', __name__
+    'retrieve_bp', __name__, url_prefix='/retrieve'
 )
 
 api_key = Config.API_KEY

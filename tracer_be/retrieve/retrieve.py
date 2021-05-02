@@ -17,7 +17,7 @@ api_key = Config.API_KEY
 
 # STOCKS
 @retrieve_bp.route('/stocks_us', methods=['GET'])
-@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
+@cross_origin(origin='http://127.0.0.1:5000',headers=['Content-Type','Authorization'])
 def list_stocks():
     return requests.get('https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + api_key).content
 
